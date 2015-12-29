@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- set viewport to device width to make site responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- bootstrap css -->
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <title>Spotify Search</title>
+</head>
+
+<body>
+  <div class="container">
+    <!-- page content -->
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+      <h1 class="text-center">Spotify Search</h1>
+      <br>
+
+      <!-- search form -->
+      <form id="spotify-search">
+        <div class="form-group">
+          <input class="form-control" id="track" placeholder="Search songs" autofocus>
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-success btn-block" value="Search">
+        </div>
+      </form>
+        
+        <!-- results section -->
+        <div id="results">
+        <!-- handlebars templating -->
+        <!-- Handlebars templating replaced by data that comes back from API call -->
+        <!-- Each track has a name and an array of artists -->
+          <script id="tracks-template" type="text/x-handlebars-template">
+
+            {{#each tracks}}
+              <div class="row">
+                <div class="col-xs-4">
+                  {{#if album.images.[0]}}
+                    <img src="{{album.images.[0].url}}" class="img-responsive">
+                  {{/if}}
+                </div>
+                
+                <div class="col-xs-8">
+                 <p><strong>{{name}}</strong> by {{artists.[0].name}}</p>
+                 <p><a href="{{previewUrl}}" target="_blank" class="btn btn-sm"> Preview <span class="glyphicon glyphicon-play"></span</a></p>
+                </div>
+            </div>
+            <hr>
+            {{else}}
+              <p class="text-center">No results</p>
+            {{/each}}
+          </script>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- jquery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <!-- handlebars -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+
+  <!-- custom script -->
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
